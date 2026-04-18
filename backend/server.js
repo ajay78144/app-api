@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const connectDB = require('./config/db');
+
 const authRoutes = require('./routes/authRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const imageRoutes = require('./routes/imageRoutes');
@@ -13,13 +14,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ STATIC FOLDER (IMPORTANT)
+app.use('/uploads', express.static('uploads'));
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/images', imageRoutes);
-
-// static folder
-app.use('/uploads', express.static('uploads'));
 
 // DB connect
 connectDB();

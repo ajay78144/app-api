@@ -5,14 +5,18 @@ exports.uploadImage = async (req, res) => {
   try {
     const { categoryId } = req.body;
 
+    if (!req.file) {
+      return res.status(400).json({ msg: "No file uploaded ❌" });
+    }
+
     const image = new Image({
-      imageUrl: req.file.filename,
+      imageUrl: `/uploads/${req.file.filename}`, // ✅ FIX
       categoryId,
     });
 
     await image.save();
 
-    res.json({ message: 'Image Uploaded', image });
+    res.json({ message: 'Image Uploaded ✅', image });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -38,7 +42,7 @@ exports.getImages = async (req, res) => {
 exports.deleteImage = async (req, res) => {
   try {
     await Image.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Image Deleted' });
+    res.json({ message: 'Image Deleted ✅' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
