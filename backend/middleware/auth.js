@@ -1,27 +1,36 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken');
 
-module.exports = function (req, res, next) {
-  const authHeader = req.header("Authorization");
-
-  console.log("HEADER:", authHeader); // 👈 add this
-
-  if (!authHeader) {
-    return res.status(401).json({ msg: "No token ❌" });
-  }
-
+module.exports = (req, res, next) => {
   try {
-    const token = authHeader.split(" ")[1];
+    // 🔹 Authorization header lo
+    const authHeader = req.header('Authorization');
 
-    console.log("TOKEN:", token); // 👈 add this
+    // ❌ Agar token hi nahi hai
+    if (!authHeader) {
+      return res.status(401).json({ msg: 'No token provided ❌' });
+    }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // 🔹 "Bearer TOKEN" se TOKEN extract karo
+    const token = authHeader.split(' ')[1];
 
-    console.log("DECODED:", decoded); // 👈 add this
+    // ❌ Agar token missing hai
+    if (!token) {
+      return res.status(401).json({ msg: 'Token format wrong ❌' });
+    }
 
+    // 🔥 VERIFY TOKEN (MOST IMPORTANT)
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET || 'secretkey'
+    );
+
+    // 🔹 user data attach karo
     req.user = decoded;
+
     next();
   } catch (err) {
-    console.log("ERROR:", err.message); // 👈 IMPORTANT
-    res.status(401).json({ msg: "Invalid token ❌" });
+    console.log("Auth Error:", err.message); // debug ke liye
+
+    res.status(401).json({ msg: 'Invalid token ❌' });
   }
 };
