@@ -2,21 +2,21 @@ const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// 🔐 REGISTER (only first time use)
+// 🔐 REGISTER (multiple users allowed)
 exports.register = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // ✅ check if admin already exists
+    // ✅ check if email already exists
     const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
-      return res.status(400).json({ msg: 'Admin already exists ❌' });
+      return res.status(400).json({ msg: 'Email already exists ❌' });
     }
 
     // ✅ hash password
     const hashed = await bcrypt.hash(password, 10);
 
-    // ✅ create admin
+    // ✅ create new user/admin
     const admin = new Admin({
       email,
       password: hashed,
@@ -24,7 +24,7 @@ exports.register = async (req, res) => {
 
     await admin.save();
 
-    res.json({ message: 'Admin Registered ✅' });
+    res.json({ message: 'Registered successfully ✅' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -47,10 +47,10 @@ exports.login = async (req, res) => {
       return res.status(400).json({ msg: 'Wrong password ❌' });
     }
 
-    // ✅ use env secret
+    // ✅ JWT SECRET FIX (IMPORTANT)
     const token = jwt.sign(
       { id: user._id },
-      process.env.JWT_SECRET || 'secretkey',
+      process.env.JWT_SECRET, // ❗ sirf env use karo
       { expiresIn: '7d' }
     );
 

@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// import controller
 const { register, login } = require('../controllers/authController');
 
-// 🔐 REGISTER (only first time use)
+// 🔐 REGISTER (multiple allowed now)
 router.post('/register', register);
 
 // 🔐 LOGIN
