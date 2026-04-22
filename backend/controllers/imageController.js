@@ -1,24 +1,30 @@
 const Image = require('../models/Image');
 
-// ➕ UPLOAD IMAGE
-exports.uploadImage = async (req, res) => {
+// ➕ CREATE (UPLOAD IMAGE / URL)
+exports.createImage = async (req, res) => {
   try {
-    const { categoryId } = req.body;
+    const { categoryId, imageUrl } = req.body;
+
+    let finalImage = imageUrl;
+
+    if (req.file) {
+      finalImage = req.file.filename;
+    }
 
     const image = new Image({
-      imageUrl: req.file.filename,
+      imageUrl: finalImage,
       categoryId,
     });
 
     await image.save();
 
-    res.json({ message: 'Image Uploaded', image });
+    res.json({ message: 'Image Uploaded ✅', image });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// 📥 GET ALL IMAGES
+// 📥 GET ALL IMAGES (with filter)
 exports.getImages = async (req, res) => {
   try {
     const { category } = req.query;
@@ -34,11 +40,36 @@ exports.getImages = async (req, res) => {
   }
 };
 
+// ✏️ UPDATE IMAGE
+exports.updateImage = async (req, res) => {
+  try {
+    const { categoryId, imageUrl } = req.body;
+
+    let updateData = { categoryId };
+
+    if (req.file) {
+      updateData.imageUrl = req.file.filename;
+    } else if (imageUrl) {
+      updateData.imageUrl = imageUrl;
+    }
+
+    const updated = await Image.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    );
+
+    res.json({ message: 'Image Updated ✅', updated });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // ❌ DELETE IMAGE
 exports.deleteImage = async (req, res) => {
   try {
     await Image.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Image Deleted' });
+    res.json({ message: 'Image Deleted ❌' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
