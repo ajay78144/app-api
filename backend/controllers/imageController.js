@@ -42,27 +42,55 @@ exports.getImages = async (req, res) => {
 
 // ✏️ UPDATE IMAGE
 exports.updateImage = async (req, res) => {
+
   try {
+
     const { categoryId, imageUrl } = req.body;
 
-    let updateData = { categoryId };
+    const updateData = {};
+
+    if (categoryId) updateData.categoryId = categoryId;
+
+    // agar new file upload hui
 
     if (req.file) {
+
       updateData.imageUrl = req.file.filename;
-    } else if (imageUrl) {
-      updateData.imageUrl = imageUrl;
+
     }
 
-    const updated = await Image.findByIdAndUpdate(
+    // agar url diya
+
+    else if (imageUrl) {
+
+      updateData.imageUrl = imageUrl;
+
+    }
+
+    const updatedImage = await Image.findByIdAndUpdate(
+
       req.params.id,
+
       updateData,
+
       { new: true }
+
     );
 
-    res.json({ message: 'Image Updated ✅', updated });
+    if (!updatedImage) {
+
+      return res.status(404).json({ message: "Image not found ❌" });
+
+    }
+
+    res.json({ message: 'Image Updated ✅', updatedImage });
+
   } catch (err) {
+
     res.status(500).json({ error: err.message });
+
   }
+
 };
 
 // ❌ DELETE IMAGE
