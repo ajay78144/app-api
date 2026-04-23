@@ -1,6 +1,6 @@
 const Image = require('../models/Image');
 
-// ➕ CREATE (UPLOAD IMAGE / URL)
+// ➕ CREATE
 exports.createImage = async (req, res) => {
   try {
     const { categoryId, imageUrl } = req.body;
@@ -24,7 +24,7 @@ exports.createImage = async (req, res) => {
   }
 };
 
-// 📥 GET ALL IMAGES (with filter)
+// 📥 GET ALL
 exports.getImages = async (req, res) => {
   try {
     const { category } = req.query;
@@ -40,63 +40,66 @@ exports.getImages = async (req, res) => {
   }
 };
 
-// ✏️ UPDATE IMAGE
+// 🔍 GET SINGLE IMAGE (FIND)
+exports.getSingleImage = async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
+
+    if (!image) {
+      return res.status(404).json({ message: "Image not found ❌" });
+    }
+
+    res.json(image);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// ✏️ UPDATE
 exports.updateImage = async (req, res) => {
 
-  try {
+  console.log("PUT API Hit", req.params.id, req.body, req.file);
 
+  try {
     const { categoryId, imageUrl } = req.body;
 
     const updateData = {};
 
     if (categoryId) updateData.categoryId = categoryId;
 
-    // agar new file upload hui
-
     if (req.file) {
-
       updateData.imageUrl = req.file.filename;
-
-    }
-
-    // agar url diya
-
-    else if (imageUrl) {
-
+    } else if (imageUrl) {
       updateData.imageUrl = imageUrl;
-
     }
 
     const updatedImage = await Image.findByIdAndUpdate(
-
       req.params.id,
-
       updateData,
-
       { new: true }
-
     );
 
     if (!updatedImage) {
-
       return res.status(404).json({ message: "Image not found ❌" });
-
     }
 
     res.json({ message: 'Image Updated ✅', updatedImage });
 
   } catch (err) {
-
+    console.log(err);
     res.status(500).json({ error: err.message });
-
   }
-
 };
 
-// ❌ DELETE IMAGE
+// ❌ DELETE
 exports.deleteImage = async (req, res) => {
   try {
-    await Image.findByIdAndDelete(req.params.id);
+    const deleted = await Image.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Image not found ❌" });
+    }
+
     res.json({ message: 'Image Deleted ❌' });
   } catch (err) {
     res.status(500).json({ error: err.message });
