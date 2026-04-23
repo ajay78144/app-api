@@ -4,18 +4,26 @@ const router = express.Router();
 const {
   addCategory,
   getCategories,
+  getSingleCategory,
+  updateCategory,
   deleteCategory,
 } = require('../controllers/categoryController');
 
 const auth = require('../middleware/auth');
 
-router.post('/', auth, addCategory);   // 🔐 protected
-router.delete('/:id', auth, deleteCategory); // 🔐 protected
-router.get('/', getCategories); // public
+// ➕ CREATE
+router.post('/', auth, addCategory);
 
-// APIs
-router.post('/', addCategory);        // add
-router.get('/', getCategories);       // get all
-router.delete('/:id', deleteCategory); // delete
+// 📥 GET ALL
+router.get('/', getCategories);
+
+// 🔍 GET SINGLE (FIND)
+router.get('/:id', getSingleCategory);
+
+// ✏️ UPDATE
+router.put('/:id', auth, updateCategory);
+
+// ❌ DELETE
+router.delete('/:id', auth, deleteCategory);
 
 module.exports = router;

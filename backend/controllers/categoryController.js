@@ -1,6 +1,6 @@
 const Category = require('../models/Category');
 
-// ➕ ADD CATEGORY
+// ➕ CREATE
 exports.addCategory = async (req, res) => {
   try {
     const { name, image } = req.body;
@@ -8,13 +8,13 @@ exports.addCategory = async (req, res) => {
     const category = new Category({ name, image });
     await category.save();
 
-    res.json({ message: 'Category Added', category });
+    res.json({ message: 'Category Added ✅', category });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// 📥 GET ALL CATEGORIES
+// 📥 GET ALL
 exports.getCategories = async (req, res) => {
   try {
     const data = await Category.find().sort({ createdAt: -1 });
@@ -24,11 +24,52 @@ exports.getCategories = async (req, res) => {
   }
 };
 
-// ❌ DELETE CATEGORY
+// 🔍 GET SINGLE (FIND)
+exports.getSingleCategory = async (req, res) => {
+  try {
+    const category = await Category.findById(req.params.id);
+
+    if (!category) {
+      return res.status(404).json({ message: "Category not found ❌" });
+    }
+
+    res.json(category);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// ✏️ UPDATE
+exports.updateCategory = async (req, res) => {
+  try {
+    const { name, image } = req.body;
+
+    const updated = await Category.findByIdAndUpdate(
+      req.params.id,
+      { name, image },
+      { new: true }
+    );
+
+    if (!updated) {
+      return res.status(404).json({ message: "Category not found ❌" });
+    }
+
+    res.json({ message: 'Category Updated ✅', updated });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// ❌ DELETE
 exports.deleteCategory = async (req, res) => {
   try {
-    await Category.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Category Deleted' });
+    const deleted = await Category.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Category not found ❌" });
+    }
+
+    res.json({ message: 'Category Deleted ❌' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
