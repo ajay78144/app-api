@@ -1,24 +1,23 @@
 const Image = require('../models/Image');
 
-// ➕ CREATE
+// ➕ CREATE (ONLY URL)
 exports.createImage = async (req, res) => {
   try {
     const { categoryId, imageUrl } = req.body;
 
-    let finalImage = imageUrl;
-
-    if (req.file) {
-      finalImage = req.file.filename;
+    if (!imageUrl) {
+      return res.status(400).json({ message: 'Image URL required ❌' });
     }
 
     const image = new Image({
-      imageUrl: finalImage,
+      imageUrl,
       categoryId,
     });
 
     await image.save();
 
-    res.json({ message: 'Image Uploaded ✅', image });
+    res.json({ message: 'Image Added ✅', image });
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -35,12 +34,13 @@ exports.getImages = async (req, res) => {
     const images = await Image.find(filter).sort({ createdAt: -1 });
 
     res.json(images);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// 🔍 GET SINGLE IMAGE (FIND)
+// 🔍 GET SINGLE
 exports.getSingleImage = async (req, res) => {
   try {
     const image = await Image.findById(req.params.id);
@@ -50,28 +50,21 @@ exports.getSingleImage = async (req, res) => {
     }
 
     res.json(image);
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-// ✏️ UPDATE
+// ✏️ UPDATE (ONLY URL)
 exports.updateImage = async (req, res) => {
-
-  console.log("PUT API Hit", req.params.id, req.body, req.file);
-
   try {
     const { categoryId, imageUrl } = req.body;
 
     const updateData = {};
 
     if (categoryId) updateData.categoryId = categoryId;
-
-    if (req.file) {
-      updateData.imageUrl = req.file.filename;
-    } else if (imageUrl) {
-      updateData.imageUrl = imageUrl;
-    }
+    if (imageUrl) updateData.imageUrl = imageUrl;
 
     const updatedImage = await Image.findByIdAndUpdate(
       req.params.id,
@@ -86,7 +79,6 @@ exports.updateImage = async (req, res) => {
     res.json({ message: 'Image Updated ✅', updatedImage });
 
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: err.message });
   }
 };
@@ -101,6 +93,7 @@ exports.deleteImage = async (req, res) => {
     }
 
     res.json({ message: 'Image Deleted ❌' });
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

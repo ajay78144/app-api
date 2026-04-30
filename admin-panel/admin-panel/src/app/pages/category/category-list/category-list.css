@@ -1,0 +1,31 @@
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+button {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.delete {
+  background: red;
+  color: #fff;
+}

@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const upload = require('../utils/multer');
 const {
   createImage,
   getImages,
-  getSingleImage, // 👈 ADD
+  getSingleImage,
   updateImage,
   deleteImage,
 } = require('../controllers/imageController');
@@ -13,16 +12,16 @@ const {
 const auth = require('../middleware/auth');
 
 // ➕ CREATE
-router.post('/', auth, upload.single('image'), createImage);
+router.post('/', auth, createImage);
 
 // 📥 GET ALL
 router.get('/', getImages);
 
-// 🔍 GET SINGLE (FIND)
+// 🔍 GET SINGLE
 router.get('/:id', getSingleImage);
 
 // ✏️ UPDATE
-router.put('/:id', auth, upload.single('image'), updateImage);
+router.put('/:id', auth, updateImage);
 
 // ❌ DELETE
 router.delete('/:id', auth, deleteImage);
