@@ -1,29 +1,100 @@
-<div class="auth-container">
+<div class="login-page">
 
-  <div class="auth-box">
+  <!-- 🌸 LEFT -->
+  <div class="left">
 
-    <h2>Login</h2>
+    <div class="overlay">
 
-    <form>
+      <h1>
+        Mehndi Admin
+      </h1>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="Enter email" />
-      </div>
-
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" placeholder="Enter password" />
-      </div>
-
-      <button type="submit">Login</button>
-
-      <p class="link">
-        Don't have account?
-        <span routerLink="/register">Register</span>
+      <p>
+        Manage categories,
+        upload mehndi images
+        and control trending designs.
       </p>
 
-    </form>
+    </div>
+
+  </div>
+
+  <!-- 🌸 RIGHT -->
+  <div class="right">
+
+    <div class="login-box">
+
+      <h2>
+        Welcome Back 👋
+      </h2>
+
+      <p>
+        Login to continue
+      </p>
+
+      <!-- 🌸 EMAIL -->
+      <div class="input-group">
+
+        <label>Email</label>
+
+        <input
+
+          type="email"
+
+          placeholder="Enter email"
+
+          [(ngModel)]="email"
+
+          name="email"
+        />
+
+      </div>
+
+      <!-- 🌸 PASSWORD -->
+      <div class="input-group">
+
+        <label>Password</label>
+
+        <input
+
+          type="password"
+
+          placeholder="Enter password"
+
+          [(ngModel)]="password"
+
+          name="password"
+        />
+
+      </div>
+
+      <!-- 🌸 BUTTON -->
+      <button
+
+        class="login-btn"
+
+        (click)="login()"
+
+      >
+
+        {{ loading ? 'Please Wait...' : 'Login' }}
+
+      </button>
+
+      <!-- 🌸 REGISTER -->
+      <p class="register-text">
+
+        Don't have account?
+
+        <span routerLink="/register">
+
+          Register
+
+        </span>
+
+      </p>
+
+    </div>
 
   </div>
 

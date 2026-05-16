@@ -1,20 +1,111 @@
 <div class="dashboard">
 
+  <!-- 🌸 TOP -->
+  <div class="top-bar">
+
+    <div>
+
+      <h2>
+        Mehndi Dashboard
+      </h2>
+
+      <p>
+        Welcome to Mehndi Admin Panel
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- 🌸 STATS -->
   <div class="cards">
 
+    <!-- 🌸 CARD -->
     <div class="card">
-      <h2>120</h2>
-      <p>Categories</p>
+
+      <h3>
+        Total Images
+      </h3>
+
+      <h1>
+        {{totalImages}}
+      </h1>
+
     </div>
 
+    <!-- 🌸 CARD -->
     <div class="card">
-      <h2>540</h2>
-      <p>Images</p>
+
+      <h3>
+        Categories
+      </h3>
+
+      <h1>
+        {{totalCategories}}
+      </h1>
+
     </div>
 
+    <!-- 🌸 CARD -->
     <div class="card">
-      <h2>25</h2>
-      <p>Users</p>
+
+      <h3>
+        Trending
+      </h3>
+
+      <h1>
+        {{trendingImages}}
+      </h1>
+
+    </div>
+
+    <!-- 🌸 CARD -->
+    <div class="card">
+
+      <h3>
+        Latest Uploads
+      </h3>
+
+      <h1>
+        {{latestImages.length}}
+      </h1>
+
+    </div>
+
+  </div>
+
+  <!-- 🌸 LATEST IMAGES -->
+  <div class="latest-box">
+
+    <div class="latest-header">
+
+      <h3>
+        Latest Mehndi Designs
+      </h3>
+
+    </div>
+
+    <!-- 🌸 GRID -->
+    <div class="latest-grid">
+
+      <!-- 🌸 ITEM -->
+      <div
+
+        class="latest-card"
+
+        *ngFor="let item of latestImages"
+      >
+
+        <img
+          [src]="item.imageUrl"
+        />
+
+        <h4>
+          {{item.category}}
+        </h4>
+
+      </div>
+
     </div>
 
   </div>

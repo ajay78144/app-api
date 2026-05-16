@@ -1,6 +1,247 @@
-.header {
-  background: #fff;
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-  font-weight: bold;
+/* 🌸 HEADER */
+.header{
+
+  margin-left:260px;
+
+  height:80px;
+
+  background:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 30px;
+
+  box-shadow:
+  0 3px 12px rgba(0,0,0,0.05);
+
+  position:sticky;
+
+  top:0;
+
+  z-index:999;
+}
+
+/* 🌸 LEFT */
+.left{
+
+  display:flex;
+
+  align-items:center;
+}
+
+/* 🌸 TITLE */
+.title-box h2{
+
+  margin:0;
+
+  font-size:28px;
+
+  color:#0f172a;
+
+  font-weight:700;
+}
+
+.title-box p{
+
+  margin-top:5px;
+
+  color:#64748b;
+
+  font-size:14px;
+}
+
+/* 🌸 RIGHT */
+.right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+}
+
+/* 🌸 SEARCH */
+.search-box{
+
+  position:relative;
+}
+
+/* 🌸 INPUT */
+.search-box input{
+
+  width:260px;
+
+  padding:12px 45px 12px 18px;
+
+  border:none;
+
+  outline:none;
+
+  background:#f1f5f9;
+
+  border-radius:14px;
+
+  font-size:15px;
+}
+
+/* 🌸 ICON */
+.search-icon{
+
+  position:absolute;
+
+  right:15px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  color:#64748b;
+}
+
+/* 🌸 NOTIFICATION */
+.notification{
+
+  width:48px;
+
+  height:48px;
+
+  border-radius:50%;
+
+  background:#f1f5f9;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  cursor:pointer;
+
+  position:relative;
+
+  font-size:20px;
+
+  transition:0.3s;
+}
+
+/* 🌸 HOVER */
+.notification:hover{
+
+  background:#ff4d6d;
+
+  color:white;
+}
+
+/* 🌸 DOT */
+.dot{
+
+  width:10px;
+
+  height:10px;
+
+  background:red;
+
+  border-radius:50%;
+
+  position:absolute;
+
+  top:10px;
+
+  right:10px;
+}
+
+/* 🌸 PROFILE */
+.profile{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  background:#f8fafc;
+
+  padding:8px 14px;
+
+  border-radius:16px;
+
+  cursor:pointer;
+}
+
+/* 🌸 AVATAR */
+.avatar{
+
+  width:45px;
+
+  height:45px;
+
+  border-radius:50%;
+
+  background:#ff4d6d;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:white;
+
+  font-weight:700;
+
+  font-size:18px;
+}
+
+/* 🌸 INFO */
+.info h4{
+
+  margin:0;
+
+  color:#0f172a;
+
+  font-size:15px;
+}
+
+.info p{
+
+  margin-top:3px;
+
+  color:#64748b;
+
+  font-size:12px;
+}
+
+/* 🌸 MOBILE */
+@media(max-width:768px){
+
+  .header{
+
+    margin-left:0;
+
+    padding:0 15px;
+  }
+
+  .search-box input{
+
+    width:160px;
+  }
+
+  .title-box h2{
+
+    font-size:20px;
+  }
+
+  .profile{
+
+    padding:6px 10px;
+  }
+
+  .info{
+    display:none;
+  }
+
 }

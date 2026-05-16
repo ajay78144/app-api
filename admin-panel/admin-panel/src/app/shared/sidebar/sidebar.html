@@ -1,11 +1,139 @@
 <div class="sidebar">
 
-  <h2 class="logo">Admin</h2>
+  <!-- 🌸 TOP -->
+  <div class="top">
 
-  <ul>
-    <li routerLink="/">Dashboard</li>
-    <li routerLink="/categories">Categories</li>
-    <li routerLink="/images">Images</li>
-  </ul>
+    <!-- 🌸 LOGO -->
+    <div class="logo-box">
+
+      <div class="logo-circle">
+        🌿
+      </div>
+
+      <h2 class="logo">
+        Mehndi Admin
+      </h2>
+
+    </div>
+
+    <!-- 🌸 MENU -->
+    <ul class="menu">
+
+      <!-- DASHBOARD -->
+      <li
+        routerLink="/dashboard"
+        routerLinkActive="active"
+      >
+
+        <span class="icon">🏠</span>
+
+        <span class="text">
+          Dashboard
+        </span>
+
+      </li>
+
+      <!-- CATEGORY -->
+      <li
+        routerLink="/categories"
+        routerLinkActive="active"
+      >
+
+        <span class="icon">📂</span>
+
+        <span class="text">
+          Categories
+        </span>
+
+      </li>
+
+      <!-- ADD CATEGORY -->
+      <li
+        routerLink="/add-category"
+        routerLinkActive="active"
+      >
+
+        <span class="icon">➕</span>
+
+        <span class="text">
+          Add Category
+        </span>
+
+      </li>
+
+      <!-- IMAGES -->
+      <li
+        routerLink="/images"
+        routerLinkActive="active"
+      >
+
+        <span class="icon">🖼</span>
+
+        <span class="text">
+          All Images
+        </span>
+
+      </li>
+
+      <!-- ADD IMAGE -->
+      <li
+        routerLink="/add-image"
+        routerLinkActive="active"
+      >
+
+        <span class="icon">⬆</span>
+
+        <span class="text">
+          Upload Image
+        </span>
+
+      </li>
+
+      <!-- TRENDING -->
+      <li>
+
+        <span class="icon">⭐</span>
+
+        <span class="text">
+          Trending
+        </span>
+
+      </li>
+
+      <!-- SETTINGS -->
+      <li>
+
+        <span class="icon">⚙</span>
+
+        <span class="text">
+          Settings
+        </span>
+
+      </li>
+
+    </ul>
+
+  </div>
+
+  <!-- 🌸 BOTTOM -->
+  <div class="bottom">
+
+    <!-- 🌸 LOGOUT -->
+    <div
+
+      class="logout"
+
+      (click)="logout()"
+    >
+
+      <span class="icon">🚪</span>
+
+      <span class="text">
+        Logout
+      </span>
+
+    </div>
+
+  </div>
 
 </div>

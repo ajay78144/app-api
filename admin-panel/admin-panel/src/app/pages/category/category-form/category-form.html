@@ -1,24 +1,115 @@
-<div class="form-container">
+<div class="page">
 
-  <h2>Add Category</h2>
+  <div class="top-bar">
 
-  <form>
+    <h2>Category Module</h2>
 
-    <!-- NAME -->
-    <div class="form-group">
+    <button
+      routerLink="/categories"
+      class="add-btn"
+    >
+      View Categories
+    </button>
+
+    <button 
+      class="add-btn"
+      (click)="newCategory()"
+    >
+    + New Category
+    </button>
+
+  </div>
+
+  <!-- 🌸 FORM -->
+  <div class="form-box">
+
+    <h3>Add Category</h3>
+
+    <div class="input-group">
+
       <label>Category Name</label>
-      <input type="text" placeholder="Enter category name" />
+
+      <input
+        type="text"
+        placeholder="Enter category name"
+        [(ngModel)]="name"
+        name="name"
+      />
+
     </div>
 
-    <!-- IMAGE -->
-    <div class="form-group">
-      <label>Category Image</label>
-      <input type="file" />
+    <div class="input-group">
+
+      <label>Category Image URL</label>
+
+      <input
+        type="text"
+        placeholder="Enter image URL"
+        [(ngModel)]="image"
+        name="image"
+      />
+
     </div>
 
-    <!-- BUTTON -->
-    <button type="submit">Save Category</button>
+    <button
+  class="submit-btn"
+  (click)="addCategory()"
+>
 
-  </form>
+  {{ editMode
+  ? 'Update Category'
+  : 'Add Category' }}
+
+</button>
+
+  </div>
+
+  <!-- 🌸 LIST -->
+  <div class="list-box">
+
+    <div class="list-header">
+      <h3>Category List</h3>
+    </div>
+
+    <div
+      class="item"
+      *ngFor="let item of categories"
+    >
+
+      <div class="left">
+
+        <img
+          [src]="item.image"
+          alt="category"
+        />
+
+        <div class="info">
+          <h4>{{item.name}}</h4>
+          <p>Mehndi Category</p>
+        </div>
+
+      </div>
+
+      <div class="actions">
+
+        <button class="edit-btn"
+          (click)="editMode = true"
+          >
+          Edit
+
+        </button>
+
+        <button
+          class="delete-btn"
+          (click)="deleteCategory(item._id)"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>

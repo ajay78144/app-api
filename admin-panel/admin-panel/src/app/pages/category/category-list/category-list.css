@@ -1,31 +1,268 @@
-.container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
+/* 🌸 PAGE */
+.page{
+
+  padding:25px;
+  margin-left:260px;
+  min-height: 100vh;
+  background: #f8fafc;
 }
 
-.top {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+/* 🌸 TOP BAR */
+.top-bar{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  margin-bottom:25px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* 🌸 TITLE */
+.top-bar h2{
+
+  margin:0;
+
+  color:#0f172a;
+
+  font-size:32px;
+
+  font-weight:700;
 }
 
-th, td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+.top-bar p{
+
+  margin-top:6px;
+
+  color:#64748b;
 }
 
-button {
-  padding: 5px 10px;
-  margin-right: 5px;
+/* 🌸 ADD BUTTON */
+.add-btn{
+
+  border:none;
+
+  padding:14px 22px;
+
+  border-radius:14px;
+
+  background:#ff4d6d;
+
+  color:white;
+
+  font-size:15px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s;
 }
 
-.delete {
-  background: red;
-  color: #fff;
+/* 🌸 HOVER */
+.add-btn:hover{
+
+  background:#ff335c;
+}
+
+/* 🌸 SEARCH */
+.search-box{
+
+  margin-bottom:25px;
+}
+
+/* 🌸 INPUT */
+.search-box input{
+
+  width:100%;
+
+  max-width:320px;
+
+  padding:14px 18px;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:14px;
+
+  background:white;
+
+  box-shadow:
+  0 3px 12px rgba(0,0,0,0.05);
+
+  font-size:15px;
+}
+
+/* 🌸 LIST BOX */
+.list-box{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+}
+
+/* 🌸 ITEM */
+.item{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  background:white;
+
+  padding:18px;
+
+  border-radius:20px;
+
+  box-shadow:
+  0 4px 14px rgba(0,0,0,0.05);
+
+  transition:0.3s;
+}
+
+/* 🌸 HOVER */
+.item:hover{
+
+  transform:translateY(-4px);
+}
+
+/* 🌸 LEFT */
+.left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+}
+
+/* 🌸 IMAGE */
+.left img{
+
+  width:75px;
+
+  height:75px;
+
+  border-radius:18px;
+
+  object-fit:cover;
+}
+
+/* 🌸 INFO */
+.info h4{
+
+  margin:0;
+
+  color:#0f172a;
+
+  font-size:18px;
+}
+
+.info p{
+
+  margin-top:6px;
+
+  color:#64748b;
+
+  font-size:14px;
+}
+
+/* 🌸 ACTIONS */
+.actions{
+
+  display:flex;
+
+  gap:10px;
+}
+
+/* 🌸 BUTTON */
+.actions button{
+
+  border:none;
+
+  padding:10px 18px;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  transition:0.3s;
+}
+
+/* 🌸 EDIT */
+.edit-btn{
+
+  background:#facc15;
+
+  color:#111827;
+}
+
+/* 🌸 DELETE */
+.delete-btn{
+
+  background:#ff4d6d;
+
+  color:white;
+}
+
+/* 🌸 HOVER */
+.edit-btn:hover{
+
+  opacity:0.9;
+}
+
+.delete-btn:hover{
+
+  background:#ff335c;
+}
+
+/* 🌸 MOBILE */
+@media(max-width:768px){
+
+  .page{
+
+    margin-left:0;
+    padding: 15px;
+  }
+
+  .top-bar{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    
+  }
+
+  .item{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:18px;
+  }
+
+  .actions{
+
+    width:100%;
+  }
+
+  .actions button{
+
+    flex:1;
+  }
+
 }

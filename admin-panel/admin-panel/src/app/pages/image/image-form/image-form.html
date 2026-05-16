@@ -1,24 +1,117 @@
-<div class="form-container">
+<div class="page">
 
-  <h2>Upload Image</h2>
+  <!-- 🌸 TOP -->
+  <div class="top-bar">
 
-  <form>
+    <div>
 
-    <div class="form-group">
-      <label>Select Image</label>
-      <input type="file" />
+      <h2>
+
+        {{ editMode
+        ? 'Edit Mehndi Image'
+        : 'Upload Mehndi Image' }}
+
+      </h2>
+
+      <p>
+
+        {{ editMode
+        ? 'Update mehndi image'
+        : 'Add image using image URL' }}
+
+      </p>
+
     </div>
 
+    <!-- 🌸 NEW IMAGE -->
+    <button
+      class="submit-btn"
+      (click)="newImage()"
+    >
+
+      + New Image
+
+    </button>
+
+  </div>
+
+  <!-- 🌸 FORM -->
+  <div class="form-container">
+
+    <!-- 🌸 IMAGE URL -->
     <div class="form-group">
-      <label>Select Category</label>
-      <select>
-        <option>Bridal</option>
-        <option>Arabic</option>
+
+      <label>
+        Image URL
+      </label>
+
+      <input
+        type="text"
+        placeholder="Paste image URL here..."
+        [(ngModel)]="imageUrl"
+        name="imageUrl"
+      />
+
+    </div>
+
+    <!-- 🌸 CATEGORY -->
+    <div class="form-group">
+
+      <label>
+        Select Category
+      </label>
+
+      <select
+        [(ngModel)]="category"
+        name="category"
+      >
+
+        <option value="">
+          Select Category
+        </option>
+
+        <!-- 🌸 DYNAMIC CATEGORY -->
+        <option
+          *ngFor="let item of categories"
+          [value]="item._id"
+        >
+
+          {{item.name}}
+
+        </option>
+
       </select>
+
     </div>
 
-    <button type="submit">Upload</button>
+    <!-- 🌸 TRENDING -->
+    <div class="check-box">
 
-  </form>
+      <input
+        type="checkbox"
+        [(ngModel)]="trending"
+        name="trending"
+      />
+
+      <span>
+        Add to Trending
+      </span>
+
+    </div>
+
+    <!-- 🌸 BUTTON -->
+    <button
+      type="button"
+      class="submit-btn"
+      (click)="uploadImage()"
+    >
+
+      {{ editMode
+      ? 'Update Image'
+      : 'Upload Image' }}
+
+    </button>
+
+  </div>
 
 </div>

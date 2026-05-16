@@ -1,55 +1,197 @@
-.auth-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #ff4d6d, #ff758c);
+/* 🌸 PAGE */
+.login-page{
+
+  width:100%;
+
+  min-height:100vh;
+
+  display:flex;
+
+  background:#f8fafc;
 }
 
-.auth-box {
-  width: 350px;
-  background: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+/* 🌸 LEFT */
+.left{
+
+  flex:1;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff4d6d,
+    #ff758f
+  );
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:40px;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+/* 🌸 TEXT */
+.overlay{
+
+  max-width:420px;
+
+  color:white;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.overlay h1{
+
+  font-size:52px;
+
+  margin-bottom:20px;
+
+  font-weight:700;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.overlay p{
+
+  font-size:18px;
+
+  line-height:1.8;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  background: #ff4d6d;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+/* 🌸 RIGHT */
+.right{
+
+  flex:1;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:40px;
 }
 
-button:hover {
-  background: #e63950;
+/* 🌸 LOGIN BOX */
+.login-box{
+
+  width:100%;
+
+  max-width:420px;
+
+  background:white;
+
+  padding:40px;
+
+  border-radius:24px;
+
+  box-shadow:
+  0 8px 25px rgba(0,0,0,0.08);
 }
 
-.link {
-  text-align: center;
-  margin-top: 10px;
+/* 🌸 TITLE */
+.login-box h2{
+
+  margin:0;
+
+  font-size:34px;
+
+  color:#0f172a;
+
+  font-weight:700;
 }
 
-.link span {
-  color: #ff4d6d;
-  cursor: pointer;
+.login-box p{
+
+  margin-top:10px;
+
+  margin-bottom:30px;
+
+  color:#64748b;
+}
+
+/* 🌸 INPUT */
+.input-group{
+
+  margin-bottom:22px;
+}
+
+.input-group label{
+
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#334155;
+
+  font-weight:600;
+}
+
+.input-group input{
+
+  width:100%;
+
+  padding:14px 16px;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:14px;
+
+  background:#f1f5f9;
+
+  font-size:15px;
+}
+
+/* 🌸 BUTTON */
+.login-btn{
+
+  width:100%;
+
+  padding:15px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#ff4d6d;
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+/* 🌸 HOVER */
+.login-btn:hover{
+
+  background:#ff335c;
+}
+
+/* 🌸 MOBILE */
+@media(max-width:768px){
+
+  .login-page{
+
+    flex-direction:column;
+  }
+
+  .left{
+
+    min-height:250px;
+  }
+
+  .overlay h1{
+
+    font-size:38px;
+  }
+
+  .login-box{
+
+    padding:30px 20px;
+  }
+
 }

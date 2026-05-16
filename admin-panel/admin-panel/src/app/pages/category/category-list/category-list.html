@@ -1,27 +1,99 @@
-<div class="container">
+<div class="page">
 
-  <div class="top">
-    <h3>Categories</h3>
-    <button routerLink="/add-category">Add Category</button>
+  <!-- 🌸 TOP -->
+  <div class="top-bar">
+
+    <div>
+
+      <h2>
+        Category List
+      </h2>
+
+      <p>
+        Manage all mehndi categories
+      </p>
+
+    </div>
+
+    <button
+
+      routerLink="/add-category"
+
+      class="add-btn"
+    >
+
+      + Add Category
+
+    </button>
+
   </div>
 
-  <table>
+  <!-- 🌸 LIST -->
+  <div class="list-box">
 
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Action</th>
-    </tr>
+    <!-- 🌸 ITEM -->
+    <div
 
-    <tr>
-      <td>1</td>
-      <td>Bridal</td>
-      <td>
-        <button>Edit</button>
-        <button class="delete">Delete</button>
-      </td>
-    </tr>
+      class="item"
 
-  </table>
+      *ngFor="let item of categories"
+    >
+
+      <!-- 🌸 LEFT -->
+      <div class="left">
+
+        <img
+
+          [src]="item.image"
+
+          alt=""
+        />
+
+        <div class="info">
+
+          <h4>
+            {{item.name}}
+          </h4>
+
+          <p>
+            Mehndi Category
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- 🌸 ACTION -->
+      <div class="actions">
+
+        <!-- 🌸 EDIT -->
+        <button
+
+          class="edit-btn"
+
+          (click)="editCategory(item)"
+        >
+
+          Edit
+
+        </button>
+
+        <!-- 🌸 DELETE -->
+        <button
+
+          class="delete-btn"
+
+          (click)="deleteCategory(item._id)"
+        >
+
+          Delete
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>

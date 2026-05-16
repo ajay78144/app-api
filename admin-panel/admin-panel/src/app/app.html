@@ -1,12 +1,33 @@
-<div *ngIf="!isAuthPage()" class="layout">
-  <app-sidebar></app-sidebar>
+<!-- 🌸 AUTH PAGES -->
+<div *ngIf="isAuthPage()">
 
-  <div class="main">
-    <app-header></app-header>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
+
 </div>
 
-<router-outlet *ngIf="isAuthPage()"></router-outlet>
+
+<!-- 🌸 MAIN LAYOUT -->
+<div
+  *ngIf="!isAuthPage()"
+  class="layout"
+>
+
+  <!-- 🌸 SIDEBAR -->
+  <app-sidebar></app-sidebar>
+
+  <!-- 🌸 MAIN -->
+  <div class="main">
+
+    <!-- 🌸 HEADER -->
+    <app-header></app-header>
+
+    <!-- 🌸 CONTENT -->
+    <div class="content">
+
+      <router-outlet></router-outlet>
+
+    </div>
+
+  </div>
+
+</div>

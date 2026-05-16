@@ -1,20 +1,96 @@
-<div class="container">
+<div class="page">
 
-  <div class="top">
-    <h3>Images</h3>
-    <button routerLink="/add-image">Upload Image</button>
-  </div>
+  <!-- 🌸 TOP BAR -->
+  <div class="top-bar">
 
-  <div class="grid">
+    <div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866" />
-      <button class="delete">Delete</button>
+      <h2>
+        Image Gallery
+      </h2>
+
+      <p>
+        Manage all mehndi design images
+      </p>
+
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1590845947698-8924d7409b56" />
-      <button class="delete">Delete</button>
+    <button
+      routerLink="/add-image"
+      class="upload-btn"
+    >
+      + Upload Image
+    </button>
+
+  </div>
+
+  <!-- 🌸 IMAGE GRID -->
+  <div class="grid">
+
+    <!-- 🌸 CARD -->
+    <div
+
+      class="card"
+
+      *ngFor="let item of images"
+    >
+
+      <!-- 🌸 IMAGE -->
+      <div class="img-box">
+
+        <img
+          [src]="item.imageUrl"
+          alt=""
+        />
+
+      </div>
+
+      <!-- 🌸 CONTENT -->
+      <div class="content">
+
+        <!-- 🌸 CATEGORY -->
+        <h4>
+
+          Category :
+          {{item.category}}
+
+        </h4>
+
+        <!-- 🌸 TRENDING -->
+        <p>
+
+          Trending :
+          {{item.trending}}
+
+        </p>
+
+      </div>
+
+      <!-- 🌸 ACTIONS -->
+      <div class="actions">
+
+        <!-- 🌸 EDIT -->
+        <button
+
+          class="edit-btn"
+
+          (click)="editImage(item)"
+        >
+          Edit
+        </button>
+
+        <!-- 🌸 DELETE -->
+        <button
+
+          class="delete-btn"
+
+          (click)="deleteImage(item._id)"
+        >
+          Delete
+        </button>
+
+      </div>
+
     </div>
 
   </div>
