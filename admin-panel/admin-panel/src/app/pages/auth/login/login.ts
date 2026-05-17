@@ -88,14 +88,20 @@ export class Login {
             JSON.stringify(result)
           );
 
+
+           // 🌸 REDIRECT
+          // this.router.navigate([
+          //   '/'
+          // ]);
+
+          window.location.href='/dashboard';
+
+
           alert(
             'Login Success'
           );
 
-          // 🌸 REDIRECT
-          this.router.navigate([
-            '/dashboard'
-          ]);
+         
 
         }
 
